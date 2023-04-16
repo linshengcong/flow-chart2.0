@@ -338,7 +338,7 @@ export default {
   }
 }
 .footer-container{
-  position: fixed;
+  position: absolute;
   right: 12px;
   bottom: 16px;
   z-index: 999;
