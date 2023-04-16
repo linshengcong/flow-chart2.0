@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="∟-----工作台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="工作台-暂无任务" transform="translate(-1178.000000, -566.000000)">
+            <g id="编组-27" transform="translate(988.000000, 328.000000)">
+                <g id="编组-6" transform="translate(190.000000, 238.000000)">
+                    <rect id="矩形" fill-opacity="0" fill="#D8D8D8" x="0" y="0" width="40" height="40"></rect>
+                    <g id="编组" transform="translate(4.000000, 5.000000)">
+                        <polygon id="路径" points="7.11111111 19.4117647 32 19.4117647 32 30 7.11111111 30 7.11111111 24.7058824"></polygon>
+                        <polygon id="路径" points="7.11111111 0 32 0 32 10.5882353 7.11111111 10.5882353 7.11111111 5.29411765"></polygon>
+                        <path d="M7.11111111,5.29411765 L7.11111111,10.5882353 L32,10.5882353 L32,0 L7.11111111,0 L7.11111111,5.29411765 Z M7.11111111,5.29411765 L0,5.29411765 L0,24.7058824 L7.11111111,24.7058824 M7.11111111,24.7058824 L7.11111111,30 L32,30 L32,19.4117647 L7.11111111,19.4117647 L7.11111111,24.7058824 Z" id="形状" stroke="#B9C2CB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <polyline id="路径" points="7.11111111 5.29411765 0 5.29411765 0 24.7058824 7.11111111 24.7058824"></polyline>
+                        <polygon id="路径" points="7.11111111 19.4117647 32 19.4117647 32 30 7.11111111 30 7.11111111 24.7058824"></polygon>
+                        <polygon id="路径" points="7.11111111 0 32 0 32 10.5882353 7.11111111 10.5882353 7.11111111 5.29411765"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

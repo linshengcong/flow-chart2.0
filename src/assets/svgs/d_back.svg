@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="∟-----工作台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="工作台-任务收起" transform="translate(-772.000000, -499.000000)">
+            <g id="03导航-/-01导航菜单-/-03弹出框-/-弹出框组件" transform="translate(752.000000, 424.000000)">
+                <g id="03导航-/-01导航菜单-/-01侧边导航-/-精简版-/-弹出框-/-按钮-/-悬停带箭头" transform="translate(0.000000, 56.000000)">
+                    <g id="01图标-/-01通用图标-/-01单色线性-/-办公-/-bell备份" transform="translate(20.000000, 19.000000)">
+                        <rect id="背景" fill="#434B5B" opacity="0" x="0" y="0" width="18" height="18"></rect>
+                        <g id="icon" transform="translate(2.250000, 3.150000)" stroke="#434B5B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.50000039">
+                            <polyline id="路径" points="2.624922 0 0 2.19375 2.624922 4.753125"></polyline>
+                            <path d="M0,2.19375 L8.62266514,2.19375 C11.2037872,2.19375 13.3957722,4.24870875 13.4963846,6.7640625 C13.6026969,9.42201 11.3501495,11.7 8.62266514,11.7 L2.24939743,11.7" id="路径"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

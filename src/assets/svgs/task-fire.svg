@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFA649" offset="0%"></stop>
+            <stop stop-color="#FF4C4C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="∟-----工作台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="工作台-任务展开" transform="translate(-1306.000000, -831.000000)">
+            <g id="编组-14" transform="translate(988.000000, 637.000000)">
+                <g id="编组-37" transform="translate(20.000000, 172.000000)">
+                    <g id="编组-32" transform="translate(47.000000, 20.000000)">
+                        <g id="02按钮-/-03文字按钮-/-02图标型-/-01常规-/-中(推荐)" transform="translate(251.000000, 0.000000)">
+                            <g id="路径-3" transform="translate(0.000000, 2.000000)">
+                                <rect id="矩形" fill="#FFFFFF" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                <path d="M8.00004,16 C11.293942,16 14,13.38968 14,10.03924 C14,9.21672 13.9581997,8.335 13.5022767,6.96464 C13.0463536,5.59432 12.954513,5.41744 12.4724298,4.57116 C12.2664684,6.29816 11.1644611,7.01792 10.8844992,7.23304 C10.8844992,7.00924 10.2178548,4.53436 9.20708805,3.05356 C8.21484143,1.6 6.86539244,0.646368 6.07414716,0 C6.07414716,1.227908 5.72878486,3.05356 5.23418156,3.98376 C4.73957826,4.91396 4.64669764,4.94784 4.02889353,5.64008 C3.41112941,6.33232 3.12756752,6.54612 2.61096407,7.38604 C2.09438463,8.226 2,9.34472 2,10.16724 C2,13.51768 4.70613804,16 8.00004,16 Z" id="路径" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="工作台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.795774914">
+        <g id="工作办理-输入" transform="translate(-278.000000, -200.000000)">
+            <g id="编组-5备份-27" transform="translate(96.000000, 124.000000)">
+                <g id="01图标-/-01通用图标-/-01单色线性-/-动作-/-新增" transform="translate(182.000000, 76.000000)">
+                    <rect id="背景" fill="#FFFFFF" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                    <g id="icon" transform="translate(2.666667, 3.000000)">
+                        <rect id="矩形" fill="#FFFFFF" x="4" y="0.333333333" width="7.33333333" height="1.33333333" rx="0.666666667"></rect>
+                        <rect id="矩形备份-2" fill="#FFFFFF" x="4" y="4.33333333" width="7.33333333" height="1.33333333" rx="0.666666667"></rect>
+                        <rect id="矩形备份-4" fill="#FFFFFF" x="4" y="8.33333333" width="7.33333333" height="1.33333333" rx="0.666666667"></rect>
+                        <polyline id="路径-64" stroke="#FFFFFF" stroke-width="1.33333333" stroke-linecap="round" stroke-linejoin="round" points="5.20417043e-18 0.666666667 1 1.66666667 2.66666667 0"></polyline>
+                        <polyline id="路径-64备份" stroke="#FFFFFF" stroke-width="1.33333333" stroke-linecap="round" stroke-linejoin="round" points="5.20417043e-18 4.66666667 1 5.66666667 2.66666667 4"></polyline>
+                        <polyline id="路径-64备份-2" stroke="#FFFFFF" stroke-width="1.33333333" stroke-linecap="round" stroke-linejoin="round" points="5.20417043e-18 8.66666667 1 9.66666667 2.66666667 8"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFA649" offset="0%"></stop>
+            <stop stop-color="#FF4C4C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="工作台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="流程图-协同" transform="translate(-565.000000, -200.000000)">
+            <g id="编组-5备份-25" transform="translate(362.000000, 124.000000)">
+                <g id="小火苗" transform="translate(203.000000, 76.000000)">
+                    <rect id="矩形" fill="#FFFFFF" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                    <path d="M8.00003333,14.5 C10.7449516,14.5 13,12.379115 13,9.6568825 C13,8.988585 12.9651664,8.2721875 12.5852306,7.15877 C12.2052947,6.045385 12.1287609,5.90167 11.7270248,5.2140675 C11.5553904,6.617255 10.6370509,7.20206 10.4037494,7.376845 C10.4037494,7.1950075 9.84821232,5.1841675 9.00590671,3.9810175 C8.17903453,2.8 7.0544937,2.025174 6.39512263,1.5 C6.39512263,2.49767525 6.10732072,3.9810175 5.6951513,4.736805 C5.28298189,5.4925925 5.20558137,5.52012 4.6907446,6.082565 C4.17594117,6.64501 3.9396396,6.8187225 3.50913673,7.5011575 C3.07865386,8.183625 3,9.092585 3,9.7608825 C3,12.483115 5.25511503,14.5 8.00003333,14.5 Z" id="路径" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,74 @@
+{
+  "name": "vue-admin-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build --progress online",
+    "build:prod": "vue-cli-service build --mode production  --dest dist",
+    "build:analyze": "vue-cli-service build --mode production --dist",
+    "lint": "eslint --ext .js,.vue src",
+    "lint:css": "stylelint src/**/*.{html,vue,css,sass,scss} --fix",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "@antv/x6": "^2.7.1",
+    "@antv/x6-plugin-clipboard": "^2.1.5",
+    "@antv/x6-plugin-dnd": "^2.0.4",
+    "@antv/x6-plugin-export": "^2.1.5",
+    "@antv/x6-plugin-history": "^2.2.0",
+    "@antv/x6-plugin-keyboard": "^2.2.0",
+    "@antv/x6-plugin-minimap": "^2.0.2",
+    "@antv/x6-plugin-selection": "^2.1.5",
+    "@antv/x6-plugin-snapline": "^2.1.6",
+    "@antv/x6-plugin-transform": "^2.1.6",
+    "@antv/x6-vue-shape": "^2.0.10",
+    "@riophae/vue-treeselect": "^0.4.0",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "awe-dnd": "^0.3.4",
+    "element-ui": "2.13.2",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-router": "~4.4.0",
+    "@vue/cli-plugin-vuex": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "babel-eslint": "^10.1.0",
+    "compression-webpack-plugin": "^4.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^7.13.0",
+    "husky": "^4.2.5",
+    "js-base64": "^3.7.3",
+    "lint-staged": "^9.5.0",
+    "sass": "^1.55.0",
+    "sass-loader": "^10.1.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.21.0",
+    "svg-sprite-loader": "^5.0.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpackbar": "^4.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

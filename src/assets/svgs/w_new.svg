@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="20px" viewBox="0 0 32 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="∟-----工作台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="工作台-任务展开" transform="translate(-647.000000, -144.000000)">
+            <g id="编组-8" transform="translate(60.000000, 64.000000)">
+                <g id="编组-5备份-22" transform="translate(564.000000, 60.000000)">
+                    <g id="05数据展示-/-02标记-/-04NEW" transform="translate(24.000000, 21.000000)">
+                        <rect id="矩形备份-2" stroke="#FFFFFF" stroke-width="1.5" fill="#FFC036" x="0" y="0" width="30" height="18" rx="9"></rect>
+                        <text id="new" font-family="HelveticaNeue-Medium, Helvetica Neue" font-size="10.5" font-weight="400" line-spacing="15" fill="#FFFFFF">
+                            <tspan x="4.5" y="10">new</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
