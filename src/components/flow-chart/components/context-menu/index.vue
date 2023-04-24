@@ -52,8 +52,8 @@ export default {
       <div
         class="context-menu"
         style={{
-          left: this.contextMenuItem.x - 78 + 'px', 
-          top: this.contextMenuItem.y - 164 + 'px', 
+          left: this.contextMenuItem.x + 'px', 
+          top: this.contextMenuItem.y - 60 + 'px', 
           'z-index': this.contextMenuItem.zIndex
         }}
       >

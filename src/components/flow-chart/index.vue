@@ -150,6 +150,16 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.x6-widget-selection-box {
+  border: none;
+  box-shadow: none;
+}
+.x6-widget-transform {
+  border: 1px dashed #1e86ff;
+}
+</style>
+
 <style lang="scss" scoped>
 $width:360px;
 

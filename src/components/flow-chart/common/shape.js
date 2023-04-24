@@ -11,31 +11,30 @@ Shape.Edge.config(Edge)
 /**
  * 注册自定义节点
  */
-export function registerNode({ nodeConfig }) {
-  let Node = null
+export function registerNode(businessConfig) {
+  let node = null
+  const nodeConfig = businessConfig.nodeConfig || {}
   try {
-    Node = require('../business/node.vue').default
-    // Node = require.context('../business/node', true, /.vue$/)
-    // console.log(Node)
+    node = require(`@/components/flow-chart/business/custom-node/${nodeConfig.customNodeName}.vue`).default
   } catch (error) {
-    Node = defaultNode
+    node = defaultNode
   }
-  // console.log('Node', Node)
+
   register({
     shape: 'custom-node',
-    width: nodeConfig.width,
-    height: nodeConfig.height,
-    component: Node,
+    width: nodeConfig.width || 100,
+    height: nodeConfig.height || 50,
+    component: node,
     attrs: {},
     ports: Ports
   })
-  // TODO
-  Node = require('../business/general-node.vue').default
+
+  node = require('@/components/flow-chart/business/custom-node/general-node.vue').default
   register({
     shape: 'general-node',
     width: 80,
     height: 48,
-    component: Node,
+    component: node,
     attrs: {},
     ports: Ports
   })

@@ -5,14 +5,14 @@ import { registerKeyboardEvent } from './keyboard'
  * 注册事件
  * @param {*} graph 画布对象
  */
-export function registerEvent(graph) {
+export function registerEvent(graph, businessConfig) {
   if (!graph) {
     console.error('画布对象为空，事件注册失败！')
     return
   }
 
-  registerNodeEvent(graph)
-  registerKeyboardEvent(graph)
+  registerNodeEvent(graph, businessConfig)
+  registerKeyboardEvent(graph, businessConfig)
 }
 
 /**
