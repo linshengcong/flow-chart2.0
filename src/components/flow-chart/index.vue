@@ -1,7 +1,10 @@
 <template>
   <div id="graph-container" :class="['graph-container', move && 'moving']" @click.stop="contextMenuVisible = false">
     <!-- 工具栏 -->
-    <tool-bar v-if="showToolBar" :class="['tool-bar',{active:show}]" />
+    <tool-bar 
+      v-if="showToolBar" 
+      :class="['tool-bar',{active:show}]" 
+      :selected-node-number="selectedNode.length" />
     <!-- 右侧节点、画布面板 -->
     <div v-if="showFlowModal" class="flow-modal" :class="{active:show}">
       <div v-show="show" class="flow-modal-content">
@@ -103,13 +106,14 @@ export default {
       graph: null, // 画布对象
       show: false, // 展开收起
       move: false, // 移动状态
-      isDisplayMiniMap: false // 小地图显示状态
+      isDisplayMiniMap: false, // 小地图显示状态
+      selectedNode: [] // 当前画布选中的节点集合
     }
   },
   mounted() {
     initDataModel(this.dataModel)
     const el = document.getElementById('container')
-    this.graph = createGraph(el, this.businessConfig)
+    this.graph = createGraph(el, this.businessConfig, this)
     this.graph.centerContent() // 将画布中元素居中展示
     this.keypressEvent(el)
 

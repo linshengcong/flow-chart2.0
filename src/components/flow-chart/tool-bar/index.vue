@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 头部导航栏 -->
-    <div class="toolbar-container">
+    <div class="toolbar-container" draggable>
       <div class="toolbar-container-left">
         <span
           class="icon"
@@ -20,19 +20,18 @@
           :title="icon.title"
           @click="handleTrigger(icon.svg)">
           <svg-icon
-            :class="[ 'can' in icon && !icon.can ? 'disabled' : 'enabled' ]"
+            :class="icon.disabled ? 'disabled' : 'enabled'"
             :icon-class="icon.svg" />
         </span>
 
         <span class="devider"></span>
 
-    
         <el-popover
           width="252"
           placement="bottom-start"
           trigger="hover">
           <span slot="reference">
-            <svg-icon icon-class="bar-11" style="width: 20px;height: 20px;" title="快捷键" />
+            <svg-icon icon-class="bar-11" style="width: 20px; height: 20px;" title="快捷键" />
           </span>
           <div class="tips-container">
             <div class="tips-container-title">
@@ -66,7 +65,7 @@
           :title="icon.title"
           @click="handleTrigger(icon.svg)">
           <svg-icon
-            :class="[ 'can' in icon && !icon.can ? 'disabled' : 'enabled' ]"
+            :class="selectedNodeNumber <= 1 ? 'disabled' : 'enabled'"
             :icon-class="icon.svg" />
         </span>
 
@@ -77,14 +76,14 @@
           :key="key"
           class="icon"
           :title="icon.title"
-          @click="handleTrigger(icon.svg)">
+          @click="handleTrigger(icon.action)">
           <svg-icon
-            :class="[ 'can' in icon && !icon.can ? 'disabled' : 'enabled' ]"
+            :class="selectedNodeNumber <= 1 ? 'disabled' : 'enabled'"
             :icon-class="icon.svg" />
         </span>
 
         <span class="devider"></span>
-      
+
         <span
           v-for="(icon, key) in tools.Tools4"
           :key="key"
@@ -92,7 +91,7 @@
           :title="icon.title"
           @click="handleTrigger(icon.action)">
           <svg-icon
-            :class="[ 'can' in icon && !icon.can ? 'disabled' : 'enabled' ]"
+            :class="selectedNodeNumber <= 2 ? 'disabled' : 'enabled'"
             :icon-class="icon.svg" />
         </span>
 
@@ -100,13 +99,13 @@
 
         <el-popover
           width="160"
-          :disabled="!tools.Tools5['bar-10'].can"
+          :disabled="!selectedNodeNumber"
           placement="bottom-start"
           trigger="hover">
           <span slot="reference" title="图层">
             <svg-icon
-              style="width: 20px;height: 20px;"
-              :class="[ !tools.Tools5['bar-10'].can ? 'disabled' : 'enabled' ]"
+              style="width: 20px; height: 20px;"
+              :class="!selectedNodeNumber ? 'disabled' : 'enabled'"
               :icon-class="tools.Tools5['bar-10'].svg" />
           </span>
           <div class="tips-container">
@@ -140,7 +139,7 @@
       </div>
     </div>
     <!-- 底部导航栏 -->
-    <div class="footer-container" @click="handleTrigger('focus')">
+    <div v-drag class="footer-container" @click="handleTrigger('focus')">
       <div class="icon-button" title="居中">
         <svg-icon icon-class="focus" />
       </div>
@@ -153,22 +152,28 @@
 </template>
 
 <script>
-import { historyChange, selectedChange, unSelectedChange } from '../common/trigger'
+import { historyChange } from '../common/trigger'
 import { Tools, TipsContent, levelList } from '../config/config'
 import { handleFullScreen, createNode } from '../event'
 import { handleNodeSpacing } from '../event/handleNodeSpacing'
 import { registerDnd } from '../common/dnd'
 import { setLevel } from '../event/level'
 import { handleAlign } from '../event/align'
+import { handleVerticalAlign } from '../event/verticalAlign'
 import searchNode from '../event/search'
 import ViewButton from './view.vue'
 import { Message } from 'element-ui'
-
 export default {
   components: {
     ViewButton
   },
   inject: ['getGraph'],
+  props: {
+    selectedNodeNumber: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       fullscreen: false, // 全屏
@@ -186,14 +191,8 @@ export default {
     setTimeout(() => {
       const graph = this.getGraph()
       historyChange(graph, () => {
-        this.tools.Tools1.undo.can = graph.canUndo()
-        this.tools.Tools1.redo.can = graph.canRedo()
-      })
-      selectedChange(graph, () => {
-        this.nodeSelected()
-      })
-      unSelectedChange(graph, () => {
-        this.nodeSelected()
+        this.tools.Tools1.undo.disabled = graph.canUndo()
+        this.tools.Tools1.redo.disabled = graph.canRedo()
       })
 
       this.searchNode = new searchNode(this.getGraph())
@@ -206,19 +205,6 @@ export default {
     setLevel(value) {
       setLevel(this.getGraph(), value)
     },
-    // 监听是否有选中节点修改状态
-    nodeSelected() {
-      const l = this.getGraph().getSelectedCells().length;
-      [2, 3, 4, 5].forEach(e => {
-        const object = this.tools[`Tools${e}`]
-        for (const key in object) {
-          if (Object.hasOwnProperty.call(object, key)) {
-            const element = object[key]
-            element.can = !!l
-          }
-        }
-      })
-    },
     handleTrigger(name) {
       const graph = this.getGraph()
       const cls = graph.getSelectedCells()
@@ -226,7 +212,7 @@ export default {
         // 撤销/重做
         case 'undo':
         case 'redo':
-          if (this.tools.Tools1[name].can) graph[name]()
+          if (this.tools.Tools1[name].disabled) graph[name]()
           break
         // 居中
         case 'focus':
@@ -250,6 +236,15 @@ export default {
         case 'bar-3':
         case 'bar-4':
           handleAlign(graph, name)
+          break
+        case 'alignTopEdge':
+          handleVerticalAlign(graph, name)
+          break
+        case 'verticalCenter':
+          handleVerticalAlign(graph, name)
+          break
+        case 'alignBottomEdge':
+          handleVerticalAlign(graph, name)
           break
         default:
           break
@@ -282,41 +277,42 @@ export default {
 
 <style lang="scss" scoped>
 .toolbar-container {
+  padding: 0 24px 0 32px;
   width: 100%;
   height: 48px;
-  background: #ffffff;
-  box-shadow: 0px -1px 0px 0px #eef0f2 inset; 
+  background: #FFFFFF;
+  box-shadow: 0 -1px 0 0 #EEF0F2 inset;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #eef0f2;
-  .devider{
+  border-top: 1px solid #EEF0F2;
+  .devider {
     margin: 0 8px;
     width: 1px;
     height: 16px;
-    background: #dfe4e8;
+    background: #DFE4E8;
   }
-  &-left{
+  &-left {
     display: flex;
     align-items: center;
     margin-left: -8px;
   }
-  &-content{
+  &-content {
     display: flex;
     align-items: center;
   }
-  &-right::v-deep{
-    .el-autocomplete{
-      .el-input input{
-        background: #f8f9fa;
+  &-right::v-deep {
+    .el-autocomplete {
+      .el-input input {
+        background: #F8F9FA;
       }
     }
   }
   .icon {
     margin: 0 8px;
     cursor: pointer;
-    .svg-icon{
-      width:20px;
+    .svg-icon {
+      width: 20px;
       height: 20px;
     }
   }
@@ -334,29 +330,50 @@ export default {
   .disabled {
     cursor: not-allowed;
     transition: none;
-    opacity: .5;
+    opacity: 0.5;
   }
 }
-.footer-container{
-  position: absolute;
+.footer-container {
+  position: fixed;
   right: 12px;
   bottom: 16px;
   z-index: 999;
   display: flex;
-  .icon-button{
+  .icon-button {
     width: 36px;
     height: 36px;
-    background: #ffffff;
-    border: 1px solid #eef0f2;
+    background: #FFFFFF;
+    border: 1px solid #EEF0F2;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 4px;
     cursor: pointer;
-    .svg-icon{
+    .svg-icon {
       width: 20px;
       height: 20px;
+    }
+  }
+  ::v-deep .input-number {
+    border: none;
+    .el-input-number__decrease,
+    .el-input-number__increase {
+      border-color: #EEF0F2;
+    }
+    .el-input-number__decrease {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    .el-input-number__increase {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .el-input {
+      .el-input__inner {
+        border-color: #EEF0F2;
+        border-radius: 8px;
+      }
     }
   }
 }
@@ -364,32 +381,32 @@ export default {
 <style lang="scss">
 .tips-container {
   padding: 8px;
-  &-title{
-    font-family: PingFang SC, PingFang SC-Semibold,sans-serif;
+  &-title {
+    font-family: PingFang SC, PingFang SC-Semibold, sans-serif;
     font-weight: bold;
-    color: #434b5b;
+    color: #434B5B;
   }
-  &-item{
+  &-item {
     height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eef0f2;
-    &-left{
+    border-bottom: 1px solid #EEF0F2;
+    &-left {
       font-size: 12px;
-      color: #434b5b;
+      color: #434B5B;
     }
-    &-right{
+    &-right {
       font-size: 12px;
-      color: #747e8c;
+      color: #747E8C;
       display: flex;
       align-items: center;
-      .right-1{
+      .right-1 {
         padding: 2px 8px;
-        background: #eef0f2;
+        background: #EEF0F2;
         border-radius: 4px;
       }
-      .right-2{
+      .right-2 {
         padding: 0 4px;
       }
     }

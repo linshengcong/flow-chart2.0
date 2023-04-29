@@ -9,7 +9,7 @@ import { registerPlugin } from './plugin'
  * @param element 画布容器
  * @returns {Graph} 画布对象
  */
-export function createGraph(element, businessConfig = {}) {
+export function createGraph(element, businessConfig = {}, instance) {
   // 实例化画布对象
   const graph = new Graph({
     container: element, // 画布的dom容器
@@ -17,7 +17,7 @@ export function createGraph(element, businessConfig = {}) {
   })
   registerNode(businessConfig)
   registerPlugin(graph, businessConfig)
-  registerEvent(graph, businessConfig)
+  registerEvent(graph, businessConfig, instance)
 
   return graph
 }

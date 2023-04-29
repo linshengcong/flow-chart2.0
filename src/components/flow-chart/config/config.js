@@ -2,59 +2,54 @@ export const Tools = {
   Tools1: {
     undo: {
       svg: 'undo',
-      can: false,
+      disabled: false,
       title: '撤销'
     },
     redo: {
       svg: 'redo',
-      can: false,
+      disabled: false,
       title: '重做'
     }
   },
   Tools2: {
     'bar-2': {
       svg: 'bar-2',
-      can: false,
       title: '左对齐'
     },
     'bar-3': {
       svg: 'bar-3',
-      can: false,
       title: '水平居中'
     },
     'bar-4': {
       svg: 'bar-4',
-      can: false,
       title: '右对齐'
     }
   },
   Tools3: {
     'bar-5': {
       svg: 'bar-5',
-      can: false,
-      title: '顶对齐'
+      title: '顶对齐',
+      action: 'alignTopEdge'
     },
     'bar-6': {
       svg: 'bar-6',
-      can: false,
-      title: '垂直居中'
+      title: '垂直居中',
+      action: 'verticalCenter'
     },
     'bar-7': {
       svg: 'bar-7',
-      can: false,
-      title: '底对齐'
+      title: '底对齐',
+      action: 'alignBottomEdge'
     }
   },
   Tools4: {
     'bar-8': {
       svg: 'bar-8',
-      can: false,
       title: '水平等间距',
       action: 'horizontalEqualSpacing'
     },
     'bar-9': {
       svg: 'bar-9',
-      can: false,
       title: '垂直等间距',
       action: 'verticalEqualSpacing'
     }
@@ -62,7 +57,6 @@ export const Tools = {
   Tools5: {
     'bar-10': {
       svg: 'bar-10',
-      can: false,
       title: '图层'
     }
   }
