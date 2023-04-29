@@ -51,8 +51,12 @@ export default {
       if (selected.length !== 1 || selected[0].id !== this.shape.id) return
       if (!this.isEditTitle) {
         this.isEditTitle = true
+        this.$nextTick(() => {
+          const dom = document.querySelector('.nodeNameInput input')
+          console.log('dom', dom)
+          dom && dom.focus()
+        })
       } else if (event.key === 'Enter' && this.isEditTitle) {
-        // TODO 获取input 框焦点切换后会失去焦点
         this.isEditTitle = false
       }
     })
@@ -68,7 +72,7 @@ export default {
             {this.businessData.nodeName}
           </div>
         } else if (this.isEditTitle) {
-          return <el-input value={this.businessData.nodeName} onInput={e => this.businessData.nodeName = e} placeholder="请输入流程节点名称"></el-input>
+          return <el-input class="nodeNameInput" value={this.businessData.nodeName} onInput={e => this.businessData.nodeName = e} placeholder="请输入流程节点名称"></el-input>
         }
       })()}
       {
