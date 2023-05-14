@@ -12,6 +12,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@antv/layout": "^0.3.20",
     "@antv/x6": "^2.7.1",
     "@antv/x6-plugin-clipboard": "^2.1.5",
     "@antv/x6-plugin-dnd": "^2.0.4",
@@ -31,13 +32,14 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/eslint-parser": "^7.21.8",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-plugin-router": "~4.4.0",
     "@vue/cli-plugin-vuex": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
     "@vue/eslint-config-standard": "^5.1.2",
-    "babel-eslint": "^10.1.0",
     "compression-webpack-plugin": "^4.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-html": "^6.0.2",

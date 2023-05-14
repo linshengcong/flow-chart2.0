@@ -55,6 +55,24 @@
             </div>
           </div>
         </el-popover>
+
+        <el-popover
+          placement="bottom-start"
+          trigger="hover">
+          <span slot="reference" class="icon">
+            <svg-icon icon-class="layout_horizontal" style="width: 20px; height: 20px;" title="层次布局" />
+          </span>
+          <div class="layout-container">
+            <div class="item" @click="horizontalLayout">
+              <svg-icon icon-class="layout_horizontal" />
+              <span class="label">横向层次布局</span>
+            </div>
+            <div class="item" @click="verticalLayout">
+              <svg-icon icon-class="layout_vertical" />
+              <span class="label">纵向层次布局</span>
+            </div>
+          </div>
+        </el-popover>
       </div>
 
       <div class="toolbar-container-content">
@@ -163,6 +181,8 @@ import { handleVerticalAlign } from '../event/verticalAlign'
 import searchNode from '../event/search'
 import ViewButton from './view.vue'
 import { Message } from 'element-ui'
+import { horizontalLayout, verticalLayout } from '../event/layout'
+
 export default {
   components: {
     ViewButton
@@ -204,6 +224,24 @@ export default {
     // 设置节点图层
     setLevel(value) {
       setLevel(this.getGraph(), value)
+    },
+    /**
+     * 横向布局
+     */
+    horizontalLayout() {
+      const graph = this.getGraph()
+      const newModel = horizontalLayout(graph.toJSON())
+      graph.fromJSON(newModel)
+      graph.centerContent()
+    },
+    /**
+     * 纵向布局
+     */
+    verticalLayout() {
+      const graph = this.getGraph()
+      const newModel = verticalLayout(graph.toJSON())
+      graph.fromJSON(newModel)
+      graph.centerContent()
     },
     handleTrigger(name) {
       const graph = this.getGraph()
@@ -410,6 +448,22 @@ export default {
         padding: 0 4px;
       }
     }
+  }
+}
+.layout-container {
+  padding: 8px;
+  .item {
+    cursor: pointer;
+    .svg-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .label {
+      padding-left: 8px;
+    }
+  }
+  .item + .item {
+    margin-top: 16px;
   }
 }
 </style>
