@@ -52,8 +52,8 @@ export default {
       <div
         class="context-menu"
         style={{
-          left: this.contextMenuItem.x + 'px', 
-          top: this.contextMenuItem.y - 60 + 'px', 
+          left: this.contextMenuItem.x + 'px',
+          top: this.contextMenuItem.y - 60 + 'px',
           'z-index': this.contextMenuItem.zIndex
         }}
       >
@@ -96,14 +96,6 @@ export default {
                 class="item"
                 vOn:click_stop={() => this.handleRadioVisible('subMenuMatchVisible')}>
                     匹配
-                <svg-icon icon-class="arrow_right" />
-              </div>
-              <div class="horizontal-line" ></div>
-              <div
-                class="item" 
-                vOn:click_stop={() => this.handleRadioVisible('subMenuExportVisible')}
-              >
-                    导出
                 <svg-icon icon-class="arrow_right" />
               </div>
             </div>

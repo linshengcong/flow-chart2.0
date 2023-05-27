@@ -27,6 +27,53 @@
         <span class="devider"></span>
 
         <el-popover
+          placement="bottom-start"
+          :append-to-body="false"
+          trigger="hover">
+          <span slot="reference" class="icon">
+            <svg-icon icon-class="export_flow_chart" style="width: 20px; height: 20px;" title="层次布局" />
+          </span>
+          <div class="layout-container">
+            <div class="item" @click="exportPDF(getGraph())">
+              <span class="label">导出画板为PDF</span>
+            </div>
+            <!-- <div class="item" @click="exportPDF()">
+              <span class="label">导出画板为数据文本</span>
+            </div> -->
+            <div class="item" @click="exportChart(getGraph(), 'PNG')">
+              <span class="label">导出画板为PNG</span>
+            </div>
+            <div class="item" @click="exportChart(getGraph(), 'JPEG')">
+              <span class="label">导出画板为JPEG</span>
+            </div>
+          </div>
+        </el-popover>
+
+        <div class="icon" :title="!fullscreen ?'全屏':'退出全屏'" @click="handleTrigger('flex-1')">
+          <svg-icon :icon-class="!fullscreen ?'flex-1':'flex-2'" />
+        </div>
+
+
+
+        <el-popover
+          placement="bottom-start"
+          trigger="hover">
+          <span slot="reference" class="icon">
+            <svg-icon icon-class="layout_horizontal" style="width: 20px; height: 20px;" title="层次布局" />
+          </span>
+          <div class="layout-container">
+            <div class="item" @click="horizontalLayout">
+              <svg-icon icon-class="layout_horizontal" />
+              <span class="label">横向层次布局</span>
+            </div>
+            <div class="item" @click="verticalLayout">
+              <svg-icon icon-class="layout_vertical" />
+              <span class="label">纵向层次布局</span>
+            </div>
+          </div>
+        </el-popover>
+
+        <el-popover
           width="252"
           placement="bottom-start"
           trigger="hover">
@@ -52,24 +99,6 @@
                   {{ item.value2 }}
                 </div>
               </div>
-            </div>
-          </div>
-        </el-popover>
-
-        <el-popover
-          placement="bottom-start"
-          trigger="hover">
-          <span slot="reference" class="icon">
-            <svg-icon icon-class="layout_horizontal" style="width: 20px; height: 20px;" title="层次布局" />
-          </span>
-          <div class="layout-container">
-            <div class="item" @click="horizontalLayout">
-              <svg-icon icon-class="layout_horizontal" />
-              <span class="label">横向层次布局</span>
-            </div>
-            <div class="item" @click="verticalLayout">
-              <svg-icon icon-class="layout_vertical" />
-              <span class="label">纵向层次布局</span>
             </div>
           </div>
         </el-popover>
@@ -182,6 +211,7 @@ import searchNode from '../event/search'
 import ViewButton from './view.vue'
 import { Message } from 'element-ui'
 import { horizontalLayout, verticalLayout } from '../event/layout'
+import { exportChart, exportPDF } from '@/components/flow-chart/event/export.js'
 
 export default {
   components: {
@@ -221,6 +251,8 @@ export default {
     }, 1000)
   },
   methods: {
+    exportChart,
+    exportPDF,
     // 设置节点图层
     setLevel(value) {
       setLevel(this.getGraph(), value)

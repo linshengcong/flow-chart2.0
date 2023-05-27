@@ -1,4 +1,4 @@
-import { exportChart } from '@/components/flow-chart/event/export.js'
+import { exportChart, exportPDF } from '@/components/flow-chart/event/export.js'
 import { onPaste, selectAll, deleteCells } from '@/components/flow-chart/common/trigger.js'
 import { handleRectMatch } from '@/components/flow-chart/event/widthAndHeightMatch.js'
 import { handleLock } from '@/components/flow-chart/event/lock.js'
@@ -77,7 +77,8 @@ export const contextMenuMixin = {
         },
         'export': () => {
           const exportType = args.label
-          exportChart(this.graph, exportType)
+          if (exportType === 'PDF') exportPDF(this.graph)
+          else exportChart(this.graph, exportType)
         }
       }
       contextMenuState[type]()
