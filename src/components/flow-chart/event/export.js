@@ -62,3 +62,51 @@ export const exportPDF = graph => {
 
   }, { padding: 20 })
 }
+
+export const exportJSON = graph => {
+  const link = document.createElement('a')
+  link.download = 'flowChart.json'
+  link.setAttribute('style', 'display: none')
+  const blob = new Blob([JSON.stringify(graph.toJSON())], { type: 'text/json' })
+  link.href = window.URL.createObjectURL(blob)
+  link.dataset.downloadurl = ['text/json', link.download, link.href].join(':')
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
+export const importJSON = graph => {
+  let input = document.createElement('input')
+  input.type = 'file'
+
+  // 绑定onchange事件
+  input.onchange = e => {
+    const files = e.target.files
+    if (!files || !files.length) {
+      input = null
+      throw new Error('没有文件')
+    }
+    const reader = new FileReader()
+    reader.onload = e => {
+      try {
+        const result = e.target.result
+        console.log('导入的文件内容:', result)
+        graph.clearCells()
+        graph.fromJSON(JSON.parse(result))
+        graph.zoom(1, {
+          absolute: true,
+          minScale: 0.25,
+          maxScale: 2
+        })
+        graph.centerContent()
+        return result
+      } catch (e) {
+        throw new Error(e + '文件导入失败, 请检查文件格式是否是JSON')
+      }
+    }
+    reader.readAsText(files[0])
+  }
+
+  // 触发上传文件
+  input.click()
+}

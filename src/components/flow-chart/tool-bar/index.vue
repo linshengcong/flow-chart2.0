@@ -37,14 +37,17 @@
             <div class="item" @click="exportPDF(getGraph())">
               <span class="label">导出画板为PDF</span>
             </div>
-            <!-- <div class="item" @click="exportPDF()">
-              <span class="label">导出画板为数据文本</span>
-            </div> -->
             <div class="item" @click="exportChart(getGraph(), 'PNG')">
               <span class="label">导出画板为PNG</span>
             </div>
             <div class="item" @click="exportChart(getGraph(), 'JPEG')">
               <span class="label">导出画板为JPEG</span>
+            </div>
+            <div class="item" @click="exportJSON(getGraph())">
+              <span class="label">导出画板为JSON 文件</span>
+            </div>
+            <div class="item" @click="importJSON(getGraph())">
+              <span class="label">导入JSON 文件到画板</span>
             </div>
           </div>
         </el-popover>
@@ -211,7 +214,7 @@ import searchNode from '../event/search'
 import ViewButton from './view.vue'
 import { Message } from 'element-ui'
 import { horizontalLayout, verticalLayout } from '../event/layout'
-import { exportChart, exportPDF } from '@/components/flow-chart/event/export.js'
+import { exportChart, exportPDF, exportJSON, importJSON } from '@/components/flow-chart/event/export.js'
 
 export default {
   components: {
@@ -253,6 +256,8 @@ export default {
   methods: {
     exportChart,
     exportPDF,
+    exportJSON,
+    importJSON,
     // 设置节点图层
     setLevel(value) {
       setLevel(this.getGraph(), value)
