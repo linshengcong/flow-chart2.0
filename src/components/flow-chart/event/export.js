@@ -21,7 +21,7 @@ export const exportChart = (graph, type, fileName = 'chart') => {
     minScale: 0.25,
     maxScale: 2
   })
-  graph[exportChartType[type]['method']](`${fileName}${exportChartType[type]['suffix']}`)
+  graph[exportChartType[type]['method']](`${fileName}${exportChartType[type]['suffix']}`, { padding: 40 })
 }
 
 export const exportPDF = graph => {
@@ -34,33 +34,35 @@ export const exportPDF = graph => {
     // a4纸的尺寸[595.28,841.89]
     const pdf = new jsPDF('', 'pt', 'a4')
     const { width, height } = graph.getContentBBox()
-    // 根据pdf 一页的尺寸, 计算出流程图占满一页所需的高度
-    const pageHeight = width / 592.28 * 841.89
+    // 是否需要缩放图片(图片宽度大于PDF 宽度, 图片需要按比例缩放)
+    const isZoomPicture = width > 595.28
+    // PDF一页的高度
+    const pageHeight = isZoomPicture ? width / 592.28 * 841.89 : 841.89
     // 流程图本身的高度
     let graphHeight = height
-    // 页面向上的偏移量
+    // 分页情况下, 页面向上的偏移量
     let offsetTop = 0
-    // 流程图占满一页的宽度
-    const imgWidth = 595.28
-    // 流程图占满pdf 宽度, 计算出流程图在pdf 中对应比例的高度
-    const imgHeight = 592.28 / width * height
-    // 当内容未超过pdf一页显示的范围，无需分页
+    // 图片的宽度
+    const imgWidth = isZoomPicture ? 595.28 : width
+    // 图片的高度
+    const imgHeight = isZoomPicture ? 592.28 / width * height : height
+    // 非分页情况下, 图片居中展示
+    const offsetLeft = isZoomPicture ? 0 : (595.28 - width) / 2
+    // 图片的高度未超过pdf一页显示的高度，无需分页
     if (graphHeight < pageHeight) {
-      pdf.addImage(dataUri, 'PNG', 0, 0, imgWidth, imgHeight)
+      pdf.addImage(dataUri, 'PNG', offsetLeft, 0, imgWidth, imgHeight)
     } else {
       while (graphHeight > 0) {
-        pdf.addImage(dataUri, 'PNG', 0, offsetTop, imgWidth, imgHeight)
+        pdf.addImage(dataUri, 'PNG', offsetLeft, offsetTop, imgWidth, imgHeight)
         graphHeight -= pageHeight
         offsetTop -= 841.89
-        // 避免添加空白页
         if (graphHeight > 0) {
           pdf.addPage()
         }
       }
     }
     pdf.save('flowChart.pdf')
-
-  }, { padding: 20 })
+  }, { padding: 40 })
 }
 
 export const exportJSON = graph => {
