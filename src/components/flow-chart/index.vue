@@ -1,9 +1,9 @@
 <template>
   <div id="graph-container" :class="['graph-container', move && 'moving']" @click.stop="contextMenuVisible = false">
     <!-- 工具栏 -->
-    <tool-bar 
-      v-if="showToolBar" 
-      :class="['tool-bar',{active:show}]" 
+    <tool-bar
+      v-if="showToolBar"
+      :class="['tool-bar',{active:show}]"
       :selected-node-number="selectedNode.length" />
     <!-- 右侧节点、画布面板 -->
     <div v-if="showFlowModal" class="flow-modal" :class="{active:show}">
@@ -114,10 +114,9 @@ export default {
     initDataModel(this.dataModel)
     const el = document.getElementById('container')
     this.graph = createGraph(el, this.businessConfig, this)
+    this.$emit('initGraph', this.graph)
     this.graph.centerContent() // 将画布中元素居中展示
     this.keypressEvent(el)
-
-    this.$emit('initGraph', this.graph)
 
     if (process.env.NODE_ENV === 'development') {
       this.addTestData()
@@ -148,7 +147,7 @@ export default {
     addTestData() {
       // 导入数据
       const graphJSON = JSON.parse(localStorage.getItem('graphJSON'))
-      this.graph.fromJSON(graphJSON || Data)    
+      this.graph.fromJSON(graphJSON || Data)
     }
   }
 }

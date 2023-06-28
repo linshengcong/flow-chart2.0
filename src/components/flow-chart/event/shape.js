@@ -87,7 +87,8 @@ export function registerNodeEvent(graph, instance) {
    * 1. 删除工具集
    */
   graph.on('edge:mouseleave', ({ cell }) => {
-    cell.removeTools()
+    cell?.removeTool('source-arrowhead')
+    cell?.removeTool('target-arrowhead')
   })
 
 
@@ -96,7 +97,7 @@ export function registerNodeEvent(graph, instance) {
    * -----------------------cell events-------------------------
    */
   /**
-   * 鼠标移入 
+   * 鼠标移入
    * 1. 显示连接桩
    */
   graph.on('cell:mouseenter', FunctionExt.debounce(({ node }) => {
@@ -106,7 +107,7 @@ export function registerNodeEvent(graph, instance) {
     showPorts(ports, !disableMove)
   }), 500)
   /**
-   * 鼠标移出 
+   * 鼠标移出
    * 1. 隐藏连接桩
    */
   graph.on('cell:mouseleave', () => {
