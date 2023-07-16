@@ -15,9 +15,9 @@ export const addTools = (node, graph) => {
             tagName: 'circle',
             selector: 'button',
             attrs: {
-              'r': 10,
+              'r': 7,
               'stroke': '#1e86ff',
-              'stroke-width': 2,
+              'stroke-width': 1,
               'fill': 'white',
               'cursor': 'pointer'
             }
@@ -28,7 +28,7 @@ export const addTools = (node, graph) => {
             selector: 'icon',
             attrs: {
               'fill': '#1e86ff',
-              'font-size': 20,
+              'font-size': 14,
               'font-weight': 'bold',
               'text-anchor': 'middle',
               'pointer-events': 'none',
@@ -38,11 +38,11 @@ export const addTools = (node, graph) => {
         ],
         x: '50%',
         y: 0,
-        offset: { x: 0, y: -20 },
+        offset: { x: 0, y: -25 },
         onClick({ cell }) {
-          const node = createNode(1, graph, cell, 'top')
+          const width = +Math.random().toString().substring(3, 5) + 100
+          const node = createNode(1, graph, cell, 'top', width)
           graph.addCell([node, createEdge(cell, node, graph, 'top')])
-          node.removeTools()
         }
       }
     },
@@ -55,9 +55,9 @@ export const addTools = (node, graph) => {
             tagName: 'circle',
             selector: 'button',
             attrs: {
-              'r': 10,
+              'r': 7,
               'stroke': '#1e86ff',
-              'stroke-width': 2,
+              'stroke-width': 1,
               'fill': 'white',
               'cursor': 'pointer'
             }
@@ -68,7 +68,7 @@ export const addTools = (node, graph) => {
             selector: 'icon',
             attrs: {
               'fill': '#1e86ff',
-              'font-size': 20,
+              'font-size': 14,
               'font-weight': 'bold',
               'text-anchor': 'middle',
               'pointer-events': 'none',
@@ -78,9 +78,10 @@ export const addTools = (node, graph) => {
         ],
         x: '100%',
         y: '50%',
-        offset: { x: 20, y: 0 },
+        offset: { x: 25, y: 0 },
         onClick({ cell }) {
-          const node = createNode(1, graph, cell, 'right')
+          const width = +Math.random().toString().substring(3, 5) + 100
+          const node = createNode(1, graph, cell, 'right', width)
           graph.addCell([node, createEdge(cell, node, graph, 'right')])
         }
       }
@@ -94,9 +95,9 @@ export const addTools = (node, graph) => {
             tagName: 'circle',
             selector: 'button',
             attrs: {
-              'r': 10,
+              'r': 7,
               'stroke': '#1e86ff',
-              'stroke-width': 2,
+              'stroke-width': 1,
               'fill': 'white',
               'cursor': 'pointer'
             }
@@ -107,7 +108,7 @@ export const addTools = (node, graph) => {
             selector: 'icon',
             attrs: {
               'fill': '#1e86ff',
-              'font-size': 20,
+              'font-size': 14,
               'font-weight': 'bold',
               'text-anchor': 'middle',
               'pointer-events': 'none',
@@ -117,9 +118,10 @@ export const addTools = (node, graph) => {
         ],
         x: '50%',
         y: '100%',
-        offset: { x: 0, y: 20 },
+        offset: { x: 0, y: 25 },
         onClick({ cell }) {
-          const node = createNode(1, graph, cell, 'bottom')
+          const width = +Math.random().toString().substring(3, 5) + 100
+          const node = createNode(1, graph, cell, 'bottom', width)
           graph.addCell([node, createEdge(cell, node, graph, 'bottom')])
         }
       }
@@ -133,9 +135,9 @@ export const addTools = (node, graph) => {
             tagName: 'circle',
             selector: 'button',
             attrs: {
-              'r': 10,
+              'r': 7,
               'stroke': '#1e86ff',
-              'stroke-width': 2,
+              'stroke-width': 1,
               'fill': 'white',
               'cursor': 'pointer'
             }
@@ -146,7 +148,7 @@ export const addTools = (node, graph) => {
             selector: 'icon',
             attrs: {
               'fill': '#1e86ff',
-              'font-size': 20,
+              'font-size': 14,
               'font-weight': 'bold',
               'text-anchor': 'middle',
               'pointer-events': 'none',
@@ -156,9 +158,11 @@ export const addTools = (node, graph) => {
         ],
         x: 0,
         y: '50%',
-        offset: { x: -20, y: 0 },
+        offset: { x: -25, y: 0 },
         onClick({ cell }) {
-          const node = createNode(1, graph, cell, 'left')
+          // TODO 开始结束按加号加载节点插在中间
+          const width = +Math.random().toString().substring(3, 5) + 100
+          const node = createNode(1, graph, cell, 'left', width)
           graph.addCell([node, createEdge(cell, node, graph, 'left')])
         }
       }

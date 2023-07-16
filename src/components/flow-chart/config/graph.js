@@ -44,9 +44,20 @@ export default {
     allowMulti: false, // 起始和终止节点之间可以创建多条边，但必须要要链接在不同的链接桩上
     allowLoop: false, // 禁止创建循环连线
     highlight: true, // 拖动边时，是否高亮显示所有可用的连接桩或节点
-    router: 'metro', // 路由样式（连线路径样式）
+    router: {
+      name: 'manhattan',
+      args: {
+        step: 16, // 路由算法步进步长，推荐使用画布的网格大小
+        padding: 16 // 设置锚点距离转角的最小距离
+      }
+    },
     // 连接器样式
-    // connector: 'jumpover', // 跳线连接器
+    connector: {
+      name: 'rounded',
+      args: {
+        radius: 16 // 倒圆角半径
+      }
+    },
     InteractionMap: {
       vertexDeletable: true // 边的路径点可以被删除
     },
