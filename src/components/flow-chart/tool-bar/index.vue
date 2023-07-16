@@ -24,7 +24,7 @@
           :title="icon.title"
           @click="handleTrigger(icon.svg)">
           <svg-icon
-            :class="icon.disabled ? 'disabled' : 'enabled'"
+            :class="!icon.disabled ? 'disabled' : 'enabled'"
             :icon-class="icon.svg" />
         </span>
 
@@ -59,8 +59,6 @@
         <div class="icon" :title="!fullscreen ?'全屏':'退出全屏'" @click="handleTrigger('flex-1')">
           <svg-icon :icon-class="!fullscreen ?'flex-1':'flex-2'" />
         </div>
-
-
 
         <el-popover
           placement="bottom-start"
@@ -255,13 +253,26 @@ export default {
       this.searchNode = new searchNode(this.getGraph())
       // 拖拽交互往画布中添加节点
       this.dnd = registerDnd(graph, document.querySelector('.toolbar-container'))
+
+      document.getElementById('graph-container')?.addEventListener('fullscreenchange', this.escape, true)
     }, 1000)
+  },
+  destroyed() {
+    document.getElementById('graph-container')?.removeEventListener('fullscreenchange', this.escape, true)
   },
   methods: {
     exportChart,
     exportPDF,
     exportJSON,
     importJSON,
+    escape() {
+      const full = document['fullscreenElement'] || document['mozFullscreenElement'] || document['msFullscreenElement'] || document['webkitFullscreenElement'] || null
+      if (full === null) {
+        this.fullscreen = false
+      } else {
+        this.fullscreen = true
+      }
+    },
     // 设置节点图层
     setLevel(value) {
       setLevel(this.getGraph(), value)
@@ -351,6 +362,7 @@ export default {
 
 <style lang="scss" scoped>
 .toolbar-container {
+  box-sizing: border-box;
   padding: 0 24px 0 32px;
   width: 100%;
   height: 48px;

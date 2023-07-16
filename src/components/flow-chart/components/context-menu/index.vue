@@ -53,7 +53,7 @@ export default {
         class="context-menu"
         style={{
           left: this.contextMenuItem.x + 'px',
-          top: this.contextMenuItem.y - 60 + 'px',
+          top: this.contextMenuItem.y - 40 + 'px',
           'z-index': this.contextMenuItem.zIndex
         }}
       >
@@ -117,7 +117,7 @@ export default {
           contextMenuItem={{
             ...this.contextMenuItem,
             x: this.style.width,
-            y: this.style.height - 57 - 134
+            y: this.style.height - 57
           }}
           subMenuOptions={[{ label: '宽度匹配', type: 'width' }, { label: '高度匹配', type: 'height' }, { label: '宽高匹配', type: 'widthAndHeight' }]}
           action="match"

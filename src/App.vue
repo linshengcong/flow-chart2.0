@@ -142,20 +142,21 @@ export default {
 
 <style lang="scss" scoped>
 .flow-chart-container {
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 20px 20px 0;
 
   .top-bar {
+    box-sizing: border-box;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 40px;
-    margin-right: 40px;
   }
 
   .flow-content {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 40px);
   }
 }
 </style>
