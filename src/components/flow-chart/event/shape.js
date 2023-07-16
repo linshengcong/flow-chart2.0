@@ -28,8 +28,7 @@ export function registerNodeEvent(graph, instance) {
     graph.getNodes().forEach(cell => {
       cell.removeTools()
     })
-    // 锁定状态不添加工具框
-    addTools(node, graph)
+    if (node.shape !== 'lane-node') addTools(node, graph)
     // setAnimate(node.store.data.id, graph)
   })
 
@@ -51,8 +50,14 @@ export function registerNodeEvent(graph, instance) {
   /**
    * 节点新增后事件
    */
-  graph.on('node:added', () => {
-    console.log('node:added')
+  graph.on('node:added', ({ node }) => {
+
+    const nodes = graph.getNodes()
+    if (node.shape === 'lane-node') {
+      // 泳道置底, 添加吸附效果
+      node.toBack()
+      laneNodeAdsorption(nodes, node)
+    }
 
   })
   /**
@@ -143,3 +148,24 @@ function showPorts(ports, show) {
   }
 }
 
+/**
+ * 泳道吸附效果
+ * @param {*} node 新节点
+ * @param {*} nodes 所有节点
+ */
+function laneNodeAdsorption(nodes, node) {
+  const lanes = nodes.filter(n => n.shape === 'lane-node' && n.id !== node.id)
+  if (!lanes.length) return
+  const targetPosition = { left: Infinity, right: -Infinity }
+  const yAxis = lanes[0].store.data.position.y
+  lanes.forEach(item => {
+    const { x } = item.store.data.position
+    const { width } = item.store.data.size
+    const right = x + width
+    if (x < targetPosition.left) targetPosition.left = x
+    if (right > targetPosition.right) targetPosition.right = right
+  })
+  const insertLeft = node.store.data.position.x < (targetPosition.left + targetPosition.right) / 2
+  const xAxis = insertLeft ? targetPosition.left - 200 : targetPosition.right
+  node.position(xAxis, yAxis)
+}

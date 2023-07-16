@@ -3,11 +3,15 @@
     <!-- 头部导航栏 -->
     <div class="toolbar-container" draggable>
       <div class="toolbar-container-left">
+        <span title="拖动到下方增加节点" @mousedown.stop="e => startDrag(e, 3)">
+          <div class="lane">
+            <div class="striping"></div>
+          </div>
+        </span>
         <span
           class="icon"
-          :data-type="1"
-          title="节点"
-          @mousedown.stop="startDrag">
+          title="拖动到下方增加节点"
+          @mousedown.stop="startDrag(e, 1)">
           <svg-icon icon-class="bar-1" />
         </span>
 
@@ -326,16 +330,11 @@ export default {
       }
     },
     // 添加节点
-    startDrag(e) {
+    startDrag(e, type) {
       const graph = this.getGraph()
-      const target = e.currentTarget
-      const type = Number(target.getAttribute('data-type') || 1)
       const node = createNode(type, graph)
-      if (node) {
-        this.dnd.start(node, e)
-      } else {
-        Message.error('添加失败')
-      }
+      if (node) this.dnd.start(node, e)
+      else Message.error('添加失败')
     },
     // 搜索节点点击
     handleSelect(item) {
@@ -361,6 +360,24 @@ export default {
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid #EEF0F2;
+
+  .lane {
+    position: relative;
+    width: 15px;
+    height: 20px;
+    border: 2px solid #434b5b;
+    border-radius: 2px;
+    margin: 0 8px;
+    cursor: pointer;
+
+    .striping {
+      position: absolute;
+      top: 5px;
+      width: 15px;
+      height: 2px;
+      background: #434b5b;
+    }
+  }
   .devider {
     margin: 0 8px;
     width: 1px;

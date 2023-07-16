@@ -126,7 +126,7 @@ export const createNode = (type, graph, activeNode, direction, width = 100, size
     else if (direction === 'bottom') position.y = position.y + size.height + width
     else if (direction === 'top') position.y = position.y - size.height - width
   }
-
+  const id = randomNumber()
   let node = ''
   switch (type) {
     case 1:
@@ -137,6 +137,15 @@ export const createNode = (type, graph, activeNode, direction, width = 100, size
         size
       })
       break
+    case 3:
+      node = graph.createNode({
+        id,
+        shape: 'lane-node',
+        data: { nodeName: '泳道' },
+        position
+      })
+      break
+
   }
   return node
 }
@@ -173,4 +182,8 @@ export const setAnimate = (id, graph) => {
     }, 2000)
   })
 
+}
+
+function randomNumber() {
+  return new Date().getTime() + Math.random().toString().substring(2, 8)
 }
