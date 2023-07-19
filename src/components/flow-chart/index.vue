@@ -118,10 +118,10 @@ export default {
     this.graph.centerContent() // 将画布中元素居中展示
     this.keypressEvent(el)
 
-    if (process.env.NODE_ENV === 'development') {
-      this.addTestData()
-      window.graph = this.graph
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    this.addTestData()
+    window.graph = this.graph
+    // }
     this.graph.on('node:dblclick', ({ node, e }) => {
       node.addTools({
         name: 'node-editor',
