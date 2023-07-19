@@ -11,7 +11,7 @@
         <span
           class="icon"
           title="拖动到下方增加节点"
-          @mousedown.stop="startDrag(e, 1)">
+          @mousedown.stop="e => startDrag(e, 1)">
           <svg-icon icon-class="bar-1" />
         </span>
 
