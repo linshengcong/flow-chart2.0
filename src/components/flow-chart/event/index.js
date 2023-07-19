@@ -1,5 +1,6 @@
 import { registerNodeEvent } from './shape'
 import { registerKeyboardEvent } from './keyboard'
+import dayjs from 'dayjs'
 
 /**
  * 注册事件
@@ -128,11 +129,14 @@ export const createNode = (type, graph, activeNode, direction, width = 100, size
   }
   const id = randomNumber()
   let node = ''
+  dataModel = { nodeName: '新节点', fullName: 'visitor', finishDate: dayjs(new Date()).format('YYYY-MM-DD') }
+
   switch (type) {
     case 1:
       node = graph.createNode({
+        id,
         shape: 'custom-node',
-        data: { ...dataModel },
+        data: dataModel,
         position,
         size
       })

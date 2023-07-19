@@ -29,6 +29,7 @@
     "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
     "@vue/babel-preset-jsx": "^1.2.4",
     "awe-dnd": "^0.3.4",
+    "dayjs": "^1.11.9",
     "element-ui": "2.13.2",
     "jspdf": "^2.5.1",
     "vue": "^2.6.11"
