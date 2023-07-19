@@ -56,7 +56,7 @@ export function registerNodeEvent(graph, instance) {
     if (node.shape === 'lane-node') {
       // 泳道置底, 添加吸附效果
       node.toBack()
-      laneNodeAdsorption(nodes, node)
+      laneNodeAdsorption(graph, nodes, node)
     }
 
   })
@@ -153,19 +153,44 @@ function showPorts(ports, show) {
  * @param {*} node 新节点
  * @param {*} nodes 所有节点
  */
-function laneNodeAdsorption(nodes, node) {
+function laneNodeAdsorption(graph, nodes, node) {
   const lanes = nodes.filter(n => n.shape === 'lane-node' && n.id !== node.id)
   if (!lanes.length) return
   const targetPosition = { left: Infinity, right: -Infinity }
   const yAxis = lanes[0].store.data.position.y
   lanes.forEach(item => {
+    item.data.count++
     const { x } = item.store.data.position
     const { width } = item.store.data.size
     const right = x + width
     if (x < targetPosition.left) targetPosition.left = x
     if (right > targetPosition.right) targetPosition.right = right
   })
+  node.data.count = lanes[0].data.count
   const insertLeft = node.store.data.position.x < (targetPosition.left + targetPosition.right) / 2
   const xAxis = insertLeft ? targetPosition.left - 200 : targetPosition.right
   node.position(xAxis, yAxis)
+  if (insertLeft) mergeNode({ graph, lanes: [node, ...lanes] })
+  else mergeNode({ graph, lanes: [...lanes, node] })
+}
+
+function mergeNode({ graph, lanes }) {
+
+  let width = 0, height = 0
+  const x = lanes[0].store.data.position.x
+  const y = lanes[0].store.data.position.y
+  lanes.forEach(item => {
+    width += item.store.data.size.width
+    if (height < item.store.data.size.height) height = item.store.data.size.height
+  })
+  graph.removeCells(lanes)
+  const id = new Date().getTime() + Math.random().toString().substring(2, 8)
+  const node = graph.createNode({
+    id,
+    shape: 'lane-node',
+    data: { id, count: lanes[0].data.count, nodeName: '泳道' },
+    size: { width, height },
+    position: { x, y }
+  })
+  graph.addCell([node])
 }

@@ -142,6 +142,7 @@ export const createNode = (type, graph, activeNode, direction, width = 100, size
         id,
         shape: 'lane-node',
         data: { nodeName: '泳道' },
+        size: { width: 200, height: 400 },
         position
       })
       break

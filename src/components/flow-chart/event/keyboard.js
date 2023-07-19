@@ -16,7 +16,7 @@ const keyboardCopyEvent = graph => {
  */
 const keyboardPasteEvent = graph => {
   if (!graph.isClipboardEmpty()) {
-    const id = window.randomNumber()
+    const id = new Date().getTime() + Math.random().toString().substring(2, 8)
     const cells = graph.paste({
       offset: 32,
       nodeProps: { id, data: { id, isCopy: true } } // 重写节点额外属性
