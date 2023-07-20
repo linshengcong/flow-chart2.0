@@ -17,7 +17,6 @@ export function createGraph(element, businessConfig = {}, instance) {
   })
   registerNode(businessConfig)
   registerPlugin(graph, businessConfig)
-  registerEvent(graph, businessConfig, instance)
-
+  !businessConfig.isView && registerEvent(graph, businessConfig, instance)
   return graph
 }

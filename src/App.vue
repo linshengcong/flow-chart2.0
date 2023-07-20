@@ -12,6 +12,7 @@
     <div class="flow-content">
       <flow-chart
         ref="flowChart"
+        :business-config="businessConfig"
         :show-flow-modal="true"
         :breadcrumb="false"
         :use-context-menu="true"
@@ -40,6 +41,7 @@
 import FlowChart from '@/components/flow-chart'
 import EdgeConfig from '@/components/flow-chart/business/components/edge-config.vue'
 import NodeConfig from '@/components/flow-chart/business/components/node-config.vue'
+import businessConfig from './businessConfig'
 
 export default {
   name: 'Flow',
@@ -57,9 +59,8 @@ export default {
         label: '',
         edgeInstance: null
       },
-      nodeInfo: {
-
-      }
+      nodeInfo: {},
+      businessConfig
     }
   },
   methods: {

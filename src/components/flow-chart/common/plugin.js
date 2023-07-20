@@ -14,25 +14,27 @@ import reszieOpts from '../config/resize'
  * 注册插件
  * param {*} graph 画布对象
  */
-export function registerPlugin(graph) {
+export function registerPlugin(graph, { isView }) {
   if (!graph) return
+  const enabled = !isView
+
   // 对齐线
   graph.use(new Snapline({ enabled: true }))
   // 复制粘贴
-  graph.use(new Clipboard({ enabled: true }))
+  graph.use(new Clipboard({ enabled }))
   // 快捷键
-  graph.use(new Keyboard({ enabled: true }))
+  graph.use(new Keyboard({ enabled }))
   // 框选
-  graph.use(new Selection(SelectionOpts))
+  graph.use(new Selection({ ...SelectionOpts, enabled }))
   // 撤销重做
-  graph.use(new History({ enabled: true }))
+  graph.use(new History({ enabled }))
   // 小地图
   graph.use(new MiniMap({
     container: document.getElementById('minimap'),
     width: 160, height: 120, padding: 48
   }))
   // 图形变换
-  graph.use( new Transform({ resizing: reszieOpts }))
+  graph.use(new Transform({ resizing: { ...reszieOpts, enabled } }))
   // 导出
   graph.use(new Export())
 }
